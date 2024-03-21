@@ -4,6 +4,8 @@ import path from 'path';
 import morgan from 'morgan';
 import cors from 'cors';
 
+import projects from './routes/projects.mjs';
+
 const port = process.env.PORT || 8866;
 const app = express();
 
@@ -20,6 +22,8 @@ if (process.env.NODE_ENV !== 'test') {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/projects", projects);
 
 app.get('/', (req, res) => res.send("docs"));
 
