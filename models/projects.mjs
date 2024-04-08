@@ -19,6 +19,31 @@ const projects = {
             await db.close();
         }
     },
+
+    create: async function create(body) {
+        let db = await database.openDb();
+
+        try {
+
+            const result = await db.run(
+                  'INSERT INTO projects (name, description, responsible) VALUES (?, ?, ?)',
+                  body.name,
+                  body.description,
+                  body.responsible,
+            );
+
+            return result;
+        } catch(error) {
+            return {
+                errors: {
+                    status: error.status,
+                    message: error.message,
+                }
+            };
+        } finally {
+            await db.close();
+        }
+    }
 };
 
 export default projects;

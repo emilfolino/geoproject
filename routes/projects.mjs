@@ -17,4 +17,25 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.post("/", async (req, res) => {
+    const result = await projectsModel.create(req.body);
+
+    if (result.hasOwnProperty("errors")) {
+        const status = result.errors.status;
+
+        return res.status(status || 500).json(result);
+    }
+
+    let returnObject = {
+        id: result.lastID,
+        ...req.body
+    };
+
+    return res.status(201).json({
+        data: returnObject
+    });
+});
+
+
+
 export default router;
