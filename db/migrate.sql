@@ -11,3 +11,8 @@ CREATE TABLE IF NOT EXISTS images (
     project_id INTEGER NOT NULL,
     FOREIGN KEY(project_id) REFERENCES projects(ROWID)
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    email TEXT,
+    password TEXT
+);
