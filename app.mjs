@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import projects from './routes/projects.mjs';
+import images from './routes/images.mjs';
 import authModel from './models/auth.mjs';
 
 const port = process.env.PORT || 8866;
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/projects", projects);
+app.use("/images", images);
 
 app.post("/login", (req, res) => authModel.login(req, res));
 app.post("/register", (req, res) => authModel.register(req, res));

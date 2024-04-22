@@ -10,7 +10,6 @@ const auth = {
     login: async function login(req, res) {
         const email = req.body.email;
         const password = req.body.password;
-        const apiKey = req.body.api_key;
 
         if (!email || !password) {
             return res.status(401).json({
